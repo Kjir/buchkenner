@@ -1,5 +1,8 @@
-h1 New book
+h1.title New book
 
 == render 'form'
 
-= link_to 'Back', books_path
+= link_to books_path, class: 'button is-outlined' do
+  span.icon
+    i.fas.fa-arrow-alt-circle-left
+  span Back

@@ -7,12 +7,20 @@
           li = message
 
   .field
-    = f.label :title
-    = f.text_field :title
+    = f.label :title, class: 'label'
+    .control
+      = f.text_field :title, class: 'input'
   .field
-    = f.label :author
-    = f.text_field :author
+    = f.label :author, class: 'label'
+    .control
+      = f.text_field :author, class: 'input'
   .field
-    = f.label :isbn
-    = f.text_field :isbn
-  .actions = f.submit
+    = f.label :isbn, class: 'label'
+    .control
+      = f.text_field :isbn, class: 'input'
+  .field
+    .control
+      button.button.is-primary type='submit'
+        span.icon
+          i.fas.fa-check
+        span Create Book

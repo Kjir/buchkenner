@@ -1,0 +1,22 @@
+// 1. Import the initial variables
+@import "sass/utilities/initial-variables";
+@import "sass/utilities/functions";
+
+// 2. Set your own initial variables
+// Update blue
+$blue: #345995;
+$yellow: #eac435;
+$orange: #fb4d3d;
+$red: #ca1551;
+// Add pink and its invert
+$green: #27d69d;
+$green-invert: findColorInvert($green);
+// Add a serif family
+$family-sans-serif: 'Roboto', sans-serif;
+
+$primary: $green;
+$primary-invert: $green-invert;
+$danger: $orange;
+
+// 6. Import the rest of Bulma
+@import "bulma";
