@@ -2,38 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'books/index', type: :view do
   let(:user) { create(:user) }
+  let(:books) { create_list(:book, 15)}
   before(:each) do
-    assign(:books, [
-             Book.create!(
-               title: 'Title',
-               author: 'Author',
-               isbn: 'Isbn',
-               user: user
-             ).tap do |book|
-               book.class_eval do
-                 def reviews_count
-                   0
-                 end
-               end
-             end,
-             Book.create!(
-               title: 'Title',
-               author: 'Author',
-               isbn: 'Isbn',
-               user: user
-             ).tap do |book|
-               book.class_eval do
-                 def reviews_count
-                   0
-                 end
-               end
-             end
-           ])
+    assign(:books, books)
   end
 
   it 'renders a list of books' do
     render
-    assert_select 'h4.title', text: 'Title'.to_s, count: 2
-    assert_select 'h6.subtitle', text: 'by Author'.to_s, count: 2
+    books.each do |book| 
+      assert_select 'h4.title', text: book.title
+      assert_select 'h6.subtitle', text: "by #{book.author}"
+    end
   end
 end

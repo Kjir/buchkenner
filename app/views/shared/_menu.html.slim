@@ -1,0 +1,25 @@
+nav.navbar.is-dark.is-fixed-top role="navigation" aria-label="main navigation"
+  .container
+    .navbar-brand
+      h1.navbar-item Buchkenner
+    .navbar-menu.is-active
+      .navbar-end
+        - if user_signed_in?
+          .navbar-item.is-active
+            span.icon
+              i.fas.fa-user
+            span
+              = current_user.email
+          .navbar-item
+            p.control
+              = link_to destroy_user_session_path, method: :delete, class: 'button' do
+                span.icon
+                  i.fas.fa-sign-out-alt
+                span Logout
+        - else
+          .navbar-item.is-active
+            p.control
+              = link_to new_user_session_path, class: 'button is-primary' do
+                span.icon
+                  i.fas.fa-user
+                span Login

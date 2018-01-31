@@ -2,13 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'books/new', type: :view do
   let(:user) { create(:user) }
+  let(:book) { build(:book) }
   before(:each) do
-    assign(:book, Book.new(
-                    title: 'MyString',
-                    author: 'MyString',
-                    isbn: 'MyString',
-                    user: user
-    ))
+    assign(:book, book)
   end
 
   it 'renders new book form' do

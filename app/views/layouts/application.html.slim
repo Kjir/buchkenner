@@ -10,35 +10,7 @@ html.has-navbar-fixed-top
     = javascript_include_tag 'application'
     = javascript_include_tag 'https://use.fontawesome.com/releases/v5.0.6/js/all.js', defer: true
   body
-    nav.navbar.is-dark.is-fixed-top role="navigation" aria-label="main navigation"
-      .container
-        .navbar-brand
-          h1.navbar-item Buchkenner
-          button.button.navbar-burger
-            span
-            span
-            span
-        .navbar-menu
-          .navbar-end
-            - if user_signed_in?
-              .navbar-item
-                span.icon
-                  i.fas.fa-user
-                span
-                  = current_user.email
-              .navbar-item
-                p.control
-                  = link_to destroy_user_session_path, method: :delete, class: 'button' do
-                    span.icon
-                      i.fas.fa-sign-out-alt
-                    span Logout
-            - else
-              .navbar-item
-                p.control
-                  = link_to new_user_session_path, class: 'button is-primary' do
-                    span.icon
-                      i.fas.fa-user
-                    span Login
+    = render 'shared/menu'
     .container.box.main
       - if notice.present?
         p.box.notification.is-success = notice

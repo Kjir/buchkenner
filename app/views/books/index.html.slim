@@ -21,7 +21,7 @@ section.section
               span.icon.is-small
                 i.fas.fa-comment
               span
-                = book.reviews_count
+                = book.reviews.to_a.count
             = link_to "https://www.goodreads.com/book/isbn/#{book.isbn}", class: 'button is-small' do
               span.icon.is-small
                 i.fas.fa-link

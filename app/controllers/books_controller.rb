@@ -3,11 +3,14 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.joins('LEFT OUTER JOIN reviews ON reviews.book_id = books.id')
-                 .select(Book.arel_table[Arel.star],
-                         Review.arel_table[Arel.star].count
-                           .as('reviews_count'))
-                 .group(:id)
+    @books = Book.all
+    # I'm a cheater: here's the solution already
+    #
+    # @books = Book.joins('LEFT OUTER JOIN reviews ON reviews.book_id = books.id')
+    #              .select(Book.arel_table[Arel.star],
+    #                      Review.arel_table[Arel.star].count
+    #                        .as('reviews_count'))
+    #              .group(:id)
   end
 
   # GET /books/1
