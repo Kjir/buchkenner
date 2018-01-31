@@ -17,12 +17,18 @@ section.section
             'by
             = book.author
           .field.toolbox
+            = link_to book, class: 'button is-small' do
+              span.icon.is-small
+                i.fas.fa-comment
+              span
+                = book.reviews_count
             = link_to "https://www.goodreads.com/book/isbn/#{book.isbn}", class: 'button is-small' do
               span.icon.is-small
                 i.fas.fa-link
-            = link_to edit_book_path(book), class: 'button is-small' do
-              span.icon.is-small
-                i.fas.fa-edit
+            - if user_signed_in?
+              = link_to edit_book_path(book), class: 'button is-small' do
+                span.icon.is-small
+                  i.fas.fa-edit
   hr
 
   = link_to new_book_path, class: 'button is-primary' do

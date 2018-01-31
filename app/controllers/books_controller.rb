@@ -3,7 +3,9 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    @books = Book.joins(:reviews).select(Book.arel_table[Arel.star],
+                                         Review.arel_table[Arel.star].count.as('reviews_count'))
+               .group(:id)
   end
 
   # GET /books/1
@@ -21,7 +23,7 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(book_params.merge(user: current_user))
 
     if @book.save
       redirect_to books_url, notice: 'Book was successfully created.'

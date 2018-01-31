@@ -1,13 +1,37 @@
-p
-  strong Title:
-  = @book.title
-p
-  strong Author:
-  = @book.author
-p
-  strong Isbn:
-  = @book.isbn
+=< link_to books_path, class: 'button' do
+  span.icon
+    i.fas.fa-arrow-alt-circle-left
+  span Back
+section
+  h1.is-1.title = @book.title
+  h3.is-3.subtitle
+    'by
+    = @book.author
+  .field
+    = link_to "https://www.goodreads.com/book/isbn/#{@book.isbn}", class: 'button' do
+      span.icon
+        i.fas.fa-link
+      span Goodreads
+  .field
+    - if user_signed_in?
+      = link_to edit_book_path(@book), class: 'button' do
+        span.icon
+          i.fas.fa-edit
+        span Edit Book
+hr
 
-=> link_to 'Edit', edit_book_path(@book)
-'|
-=< link_to 'Back', books_path
+section
+  h2.is-2.title Reviews
+  - @book.reviews.map do |review|
+    article.box
+      .field
+        span.icon
+          i.fas.fa-user
+        span
+          = review.user.email
+      .field
+        span
+          = review.rating
+          '/5
+      .field
+        = review.comment
