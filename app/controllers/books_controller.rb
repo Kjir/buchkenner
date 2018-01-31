@@ -1,16 +1,17 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: %i[show edit update destroy]
 
   # GET /books
   def index
-    @books = Book.joins(:reviews).select(Book.arel_table[Arel.star],
-                                         Review.arel_table[Arel.star].count.as('reviews_count'))
-               .group(:id)
+    @books = Book.joins('LEFT OUTER JOIN reviews ON reviews.book_id = books.id')
+                 .select(Book.arel_table[Arel.star],
+                         Review.arel_table[Arel.star].count
+                           .as('reviews_count'))
+                 .group(:id)
   end
 
   # GET /books/1
-  def show
-  end
+  def show; end
 
   # GET /books/new
   def new
@@ -18,8 +19,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /books
   def create
@@ -48,13 +48,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.require(:book).permit(:title, :author, :isbn)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def book_params
+    params.require(:book).permit(:title, :author, :isbn)
+  end
 end

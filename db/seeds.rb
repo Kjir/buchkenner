@@ -43,77 +43,76 @@ users = User.create([
                     ])
 
 books = Book.create([
-              {
-                title: 'Animal Farm',
-                author: 'George Orwell',
-                isbn: '0452284244',
-                user: users.sample
-              },
-              {
-                title: 'The Art of War',
-                author: 'Sun Tzu',
-                isbn: '1590302257',
-                user: users.sample
-              },
-              {
-                title: 'The Lord of the Rings',
-                author: 'J.R.R. Tolkien',
-                isbn: '0618640150',
-                user: users.sample
-              },
-              {
-                title: 'Au bonheur des ogres',
-                author: 'Daniel Pennac',
-                isbn: '2070403696',
-                user: users.sample
-              },
-              {
-                title: 'Il nome della rosa',
-                author: 'Umberto Eco',
-                isbn: '8845246345',
-                user: users.sample
-              },
-              {
-                title: 'The Hitchhiker\'s Guide to the Galaxy',
-                author: 'Douglas Adams',
-                isbn: '0345418913',
-                user: users.sample
-              },
-              {
-                title: 'The Hobbit',
-                author: 'J.R.R. Tolkien',
-                isbn: '0618260307',
-                user: users.sample
-              },
-              {
-                title: 'The Skystone',
-                author: 'Jack Whyte',
-                isbn: '0765350696',
-                user: users.sample
-              },
-              {
-                title: 'The Crystal Shard',
-                author: 'R.A. Salvatore',
-                isbn: '0786942460',
-                user: users.sample
-              },
-              {
-                title: 'Dracula',
-                author: 'Bram Stoker',
-                isbn: '0393970124',
-                user: users.sample
-              },
-              {
-                title: 'Harry Potter and the Sorcerer\'s Stone',
-                author: 'J.K. Rowling',
-                isbn: '0439554934',
-                user: users.sample
-              }
-            ])
-
+                      {
+                        title: 'Animal Farm',
+                        author: 'George Orwell',
+                        isbn: '0452284244',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Art of War',
+                        author: 'Sun Tzu',
+                        isbn: '1590302257',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Lord of the Rings',
+                        author: 'J.R.R. Tolkien',
+                        isbn: '0618640150',
+                        user: users.sample
+                      },
+                      {
+                        title: 'Au bonheur des ogres',
+                        author: 'Daniel Pennac',
+                        isbn: '2070403696',
+                        user: users.sample
+                      },
+                      {
+                        title: 'Il nome della rosa',
+                        author: 'Umberto Eco',
+                        isbn: '8845246345',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Hitchhiker\'s Guide to the Galaxy',
+                        author: 'Douglas Adams',
+                        isbn: '0345418913',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Hobbit',
+                        author: 'J.R.R. Tolkien',
+                        isbn: '0618260307',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Skystone',
+                        author: 'Jack Whyte',
+                        isbn: '0765350696',
+                        user: users.sample
+                      },
+                      {
+                        title: 'The Crystal Shard',
+                        author: 'R.A. Salvatore',
+                        isbn: '0786942460',
+                        user: users.sample
+                      },
+                      {
+                        title: 'Dracula',
+                        author: 'Bram Stoker',
+                        isbn: '0393970124',
+                        user: users.sample
+                      },
+                      {
+                        title: 'Harry Potter and the Sorcerer\'s Stone',
+                        author: 'J.K. Rowling',
+                        isbn: '0439554934',
+                        user: users.sample
+                      }
+                    ])
 
 books.each do |book|
-  Faker::Number.between(1, 20).times do
-    Review.create({user: users.sample, book: book, rating: Faker::Number.between(0, 5), comment: Faker::HitchhikersGuideToTheGalaxy.quote})
+  Faker::Number.between(0, 20).times do
+    Review.create(user: users.sample, book: book, rating: Faker::Number.between(0, 5), comment: Faker::HitchhikersGuideToTheGalaxy.quote)
   end
 end
